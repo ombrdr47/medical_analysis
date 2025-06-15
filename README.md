@@ -1,205 +1,140 @@
 # 🏥 Medical NLP Pipeline - Full Stack End-to-End Demo
 
-An advanced **Medical Natural Language Processing (NLP) Pipeline** capable of analyzing clinical conversations, extracting key medical information, generating SOAP notes, assessing sentiment, and evaluating data quality.  
+An advanced **Medical NLP Pipeline** that analyzes clinical conversations, extracts key medical information, generates SOAP notes, assesses sentiment, and evaluates data quality.
 
-✅ Fully functional demo for educational and academic purposes.  
-✅ Backend & Frontend deployed.  
-✅ Streamlined for live demo & assignments.
+✅ Fully functional demo for educational and academic use  
+✅ Deployed backend and frontend  
+✅ Ideal for live demos and assignments  
 
 ---
 
 ## 🚀 Key Features
 
-- **Named Entity Recognition (NER)**  
-  Extracts symptoms, diagnoses, treatments, temporal expressions, and more.
-
-- **Medical Summarization**  
-  Automatically summarizes clinical conversations into structured data.
-
-- **Sentiment Analysis**  
-  Detects patient emotions (anxious, hopeful, reassured, concerned, etc.).
-
-- **SOAP Note Generation**  
-  Converts the conversation into structured clinical SOAP documentation.
-
-- **Quality Metrics**  
-  Calculates entity coverage, summary completeness, SOAP completeness, and confidence scores.
+- **Named Entity Recognition (NER)** — Extracts SYMPTOM, DIAGNOSIS, TREATMENT, TEMPORAL, BODY_PART  
+- **Medical Summarization** — Summarizes patient conversation into structured data  
+- **Sentiment Analysis** — Detects patient emotions (anxious, hopeful, reassured, etc.)  
+- **SOAP Note Generation** — Creates structured Subjective, Objective, Assessment, Plan  
+- **Quality Metrics** — Scores for entity coverage, summary completeness, SOAP completeness, confidence  
 
 ---
 
 ## 📦 Tech Stack
 
-| Layer       | Technology        |
-| ----------- | ----------------- |
-| Backend API | FastAPI (Python)  |
-| Frontend UI | Streamlit         |
-| NLP Models  | spaCy, Transformers (HuggingFace) |
-| Deep Learning | PyTorch        |
-| Deployment  | Docker + AWS EC2 (Backend) |
-| Web Hosting | Streamlit Cloud (Frontend) |
+| Layer         | Technology                    |
+| ------------- | ----------------------------- |
+| Backend       | FastAPI (Python)              |
+| Frontend      | Streamlit                     |
+| NLP Models    | spaCy, HuggingFace Transformers |
+| Deep Learning | PyTorch                       |
+| Deployment    | Docker + AWS EC2 (Backend)    |
+| Hosting       | Streamlit Cloud (Frontend)    |
 
 ---
 
 ## 🗂️ Project Structure
 
-| File | Description |
-| ---- | ----------- |
-| `medical_nlp_pipeline.py` | NLP pipeline (NER, Summarization, Sentiment, SOAP) |
-| `medical_nlp_api.py` | Backend API server (FastAPI) |
-| `medical_nlp_streamlit.py` | Streamlit UI frontend |
-| `requirements.txt` | Python dependencies |
+| File                       | Description                        |
+| -------------------------- | ---------------------------------- |
+| `medical_nlp_pipeline.py`  | Core NLP logic (NER, SOAP, etc.)   |
+| `medical_nlp_api.py`       | FastAPI backend server             |
+| `medical_nlp_streamlit.py` | Streamlit frontend                 |
+| `requirements.txt`         | Python dependencies                |
 
 ---
 
 ## ⚙️ Deployment
 
-### Backend (FastAPI)
+### 🔹 Backend (FastAPI)
+- Deployed via Docker on AWS EC2 (t2.micro)
+- Public IP accessible for frontend communication
 
-- Deployed using Docker on AWS EC2 instance (t2.micro - Free Tier).
-- Public IP accessible for frontend communication.
-
-### Frontend (Streamlit)
-
-- Fully deployed on Streamlit Cloud.
-- Accessible globally via public URL.
+### 🔹 Frontend (Streamlit)
+- Deployed on Streamlit Cloud
+- Publicly accessible URL
 
 ---
 
 ## 🔧 Local Development
 
-### 1️⃣ Clone Repository
-
 ```bash
+# 1. Clone Repository
 git clone https://github.com/ombrdr47/medical_analysis.git
 cd medical_analysis
-````
-
-### 2️⃣ Create Virtual Environment
-
+```
+# 2. Create Virtual Environment
 ```bash
 python -m venv venv
 source venv/bin/activate
 ```
 
-### 3️⃣ Install Dependencies
-
+# 3. Install Dependencies
 ```bash
 pip install -r requirements.txt
 ```
 
-### 4️⃣ Run Backend API (FastAPI)
-
-```bash
-python medical_nlp_api.py
-```
-
-### Download spaCy Model
-
+# 4. Download spaCy Model
 ```bash
 python -m spacy download en_core_web_sm
 ```
 
-API will be available at:
-
-```
-http://localhost:8000/docs
-```
-
-### Run Frontend (Streamlit)
-
-Update the backend URL in `medical_nlp_streamlit.py`:
-
-Run Streamlit:
-
+# 5. Run Backend API
 ```bash
-streamlit run medical_nlp_streamlit.py
+python medical_nlp_api.py  # http://localhost:8000/docs
 ```
 
-Frontend UI will be available at:
-
+# 6. Run Frontend
+```bash
+streamlit run medical_nlp_streamlit.py  # http://localhost:8501
 ```
-http://localhost:8501
-```
 
----
+⸻
 
-## 🌐 Live Demo (Deployment URLs)
+🌐 Live Demo
 
-| Component                  | URL                                                                                          |
-| -------------------------- | -------------------------------------------------------------------------------------------- |
-| Frontend (Streamlit Cloud) | [Frontend](https://medicalnlpapp.streamlit.app/) |
-| Backend (FastAPI)          | [Backend](http://35.173.247.177:8000/)                   |
-
----
+Component	URL
+Frontend	Streamlit App
+Backend	FastAPI Server
 
 
-🧪 Methodology & Algorithms
-1️⃣ Named Entity Recognition (NER)
-Hybrid model combining:
+⸻
 
-Regex-based pattern extraction for medical-specific entities.
+🧠 Methodology
 
-spaCy (en_core_web_sm) for general-purpose entities (PERSON, DATE, ORG).
+🔸 NER
+	•	spaCy + regex hybrid
+	•	Extracts SYMPTOM, DIAGNOSIS, TREATMENT, BODY_PART, TEMPORAL
 
-Basic rule-based normalization for medical terms.
+🔸 Summarization
+	•	Template-based: symptoms, diagnosis, treatment, prognosis, timeline
 
-Extracted entity types:
+🔸 Sentiment Analysis
+	•	Pattern-based classification into 5 emotions
 
-SYMPTOM, DIAGNOSIS, TREATMENT, BODY_PART, TEMPORAL.
+🔸 SOAP Note Generator
+	•	Rule-based templating for Subjective, Objective, Assessment, Plan
 
-2️⃣ Summarization
-Template-based summarization extracting:
+🔸 Quality Metrics
+	•	Scores: entity coverage, summary & SOAP completeness, confidence
 
-Patient name
+⸻
 
-Symptoms list
+🏗️ Architecture
 
-Diagnoses
-
-Treatments
-
-Timeline events
-
-Prognosis and severity scoring
-
-3️⃣ Sentiment Analysis
-Intent detection using pattern matching.
-
-Sentiment categories: anxious, hopeful, reassured, concerned, neutral.
-
-Emotional indicators extracted from known phrase libraries.
-
-4️⃣ SOAP Note Generation
-Rule-based template engine to automatically structure:
-
-Subjective (HPI, Symptoms, Onset, Concerns)
-
-Objective (Exams, Imaging, Vitals)
-
-Assessment (Diagnoses, Severity, Prognosis)
-
-Plan (Treatment, Medications, Follow-up)
-
-5️⃣ Quality Metrics
-Custom scoring:
-
-Entity coverage score
-
-Summary completeness
-
-SOAP completeness
-
-Overall confidence metric
+Layer	Tech	Deployment
+Backend	FastAPI + Docker	AWS EC2
+Frontend	Streamlit	Streamlit Cloud
+Models	spaCy, Transformers	Bundled
 
 
+⸻
 
-🚀 Deployment Architecture
-| Layer       | Tech                        | Deployment           |
-| ----------- | --------------------------- | -------------------- |
-| Backend API | FastAPI                     | AWS EC2 (Dockerized) |
-| Frontend UI | Streamlit                   | Streamlit Cloud      |
-| ML Models   | spaCy, Transformers         | Bundled              |
-| WebSocket   | Real-time entity extraction | FastAPI              |
+## 🖼️ Sample Screenshots
 
+### 📍 NER Output  
+![NER](screenshots/ner_demo.png)
 
+### 📍 Sentiment Analysis  
+![Sentiment](screenshots/sentiment_demo.png)
 
+### 📍 SOAP Note  
+![SOAP](screenshots/soap_demo.png)
