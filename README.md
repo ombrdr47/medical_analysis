@@ -70,8 +70,8 @@ An advanced **Medical Natural Language Processing (NLP) Pipeline** capable of an
 ### 1️⃣ Clone Repository
 
 ```bash
-git clone https://github.com/YOUR_USERNAME/medical-nlp-pipeline.git
-cd medical-nlp-pipeline
+git clone https://github.com/ombrdr47/medical_analysis.git
+cd medical_analysis
 ````
 
 ### 2️⃣ Create Virtual Environment
@@ -93,13 +93,19 @@ pip install -r requirements.txt
 python medical_nlp_api.py
 ```
 
+### Download spaCy Model
+
+```bash
+python -m spacy download en_core_web_sm
+```
+
 API will be available at:
 
 ```
 http://localhost:8000/docs
 ```
 
-### 5️⃣ Run Frontend (Streamlit)
+### Run Frontend (Streamlit)
 
 Update the backend URL in `medical_nlp_streamlit.py`:
 
@@ -126,14 +132,74 @@ http://localhost:8501
 
 ---
 
-## 📊 Sample Use Case
 
-* Upload or paste medical conversation text
-* Pipeline analyzes & extracts medical entities
-* Generates clinical summaries and SOAP notes
-* Presents patient sentiment timeline
-* Displays quality metrics for clinical review
+🧪 Methodology & Algorithms
+1️⃣ Named Entity Recognition (NER)
+Hybrid model combining:
 
+Regex-based pattern extraction for medical-specific entities.
+
+spaCy (en_core_web_sm) for general-purpose entities (PERSON, DATE, ORG).
+
+Basic rule-based normalization for medical terms.
+
+Extracted entity types:
+
+SYMPTOM, DIAGNOSIS, TREATMENT, BODY_PART, TEMPORAL.
+
+2️⃣ Summarization
+Template-based summarization extracting:
+
+Patient name
+
+Symptoms list
+
+Diagnoses
+
+Treatments
+
+Timeline events
+
+Prognosis and severity scoring
+
+3️⃣ Sentiment Analysis
+Intent detection using pattern matching.
+
+Sentiment categories: anxious, hopeful, reassured, concerned, neutral.
+
+Emotional indicators extracted from known phrase libraries.
+
+4️⃣ SOAP Note Generation
+Rule-based template engine to automatically structure:
+
+Subjective (HPI, Symptoms, Onset, Concerns)
+
+Objective (Exams, Imaging, Vitals)
+
+Assessment (Diagnoses, Severity, Prognosis)
+
+Plan (Treatment, Medications, Follow-up)
+
+5️⃣ Quality Metrics
+Custom scoring:
+
+Entity coverage score
+
+Summary completeness
+
+SOAP completeness
+
+Overall confidence metric
+
+
+
+🚀 Deployment Architecture
+| Layer       | Tech                        | Deployment           |
+| ----------- | --------------------------- | -------------------- |
+| Backend API | FastAPI                     | AWS EC2 (Dockerized) |
+| Frontend UI | Streamlit                   | Streamlit Cloud      |
+| ML Models   | spaCy, Transformers         | Bundled              |
+| WebSocket   | Real-time entity extraction | FastAPI              |
 
 
 
