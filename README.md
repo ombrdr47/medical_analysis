@@ -89,12 +89,12 @@ streamlit run medical_nlp_streamlit.py  # http://localhost:8501
 
 ⸻
 
-🌐 Live Demo
+## 🌐 Live Demo
 
-Component	URL
-Frontend	Streamlit App
-Backend	FastAPI Server
-
+| Component | URL |
+|-----------|-----|
+| Frontend  | [Streamlit App](https://medicalnlpapp.streamlit.app/) |
+| Backend   | [FastAPI Server](http://35.173.247.177/) |
 
 ⸻
 
@@ -131,10 +131,10 @@ Models	spaCy, Transformers	Bundled
 ## 🖼️ Sample Screenshots
 
 ### 📍 NER Output  
-![NER](screenshots/ner_demo.png)
+![NER](screenshots/ner_sample.png)
 
 ### 📍 Sentiment Analysis  
-![Sentiment](screenshots/sentiment_demo.png)
+![Sentiment](screenshots/Sentiment.png)
 
 ### 📍 SOAP Note  
-![SOAP](screenshots/soap_demo.png)
+![SOAP](screenshots/SOAP.png)
