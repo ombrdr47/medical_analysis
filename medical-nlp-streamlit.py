@@ -12,7 +12,7 @@ import threading
 import streamlit as st
 import os
 
-API_BASE_URL = st.secrets.get("API_BASE_URL", "http://35.173.247.177:8000")
+API_BASE_URL = "http://localhost:8000"
 
 st.set_page_config(
     page_title="Medical NLP Pipeline",
@@ -218,22 +218,22 @@ def main():
                                 }
                             },
                             "Entity Extraction (/api/v1/entities/extract)": {
-                                "url": f"{API_BASE_URL}/api/v1/analyze",
+                                "url": f"{API_BASE_URL}/api/v1/entities/extract,
                                 "payload": {"text": conversation_text}
                             },
                             "Sentiment Analysis (/api/v1/sentiment/analyze)": {
-                                "url": f"{API_BASE_URL}/api/v1/analyze",
+                                "url": f"{API_BASE_URL}/api/v1/sentiment/analyze",
                                 "payload": {"text": conversation_text}
                             },
                             "SOAP Note (/api/v1/soap/generate)": {
-                                "url": f"{API_BASE_URL}/api/v1/analyze",
+                                "url": f"{API_BASE_URL}/api/v1/soap/generate",
                                 "payload": {
                                     "conversation_text": conversation_text,
                                     "patient_id": "PAT-" + str(int(time.time()))
                                 }
                             },
                             "Async Analysis (/api/v1/analyze/async)": {
-                                "url": f"{API_BASE_URL}/api/v1/analyze",
+                                "url": f"{API_BASE_URL}/api/v1/analyze/async",
                                 "payload": {
                                     "conversation_text": conversation_text,
                                     "patient_id": "PAT-" + str(int(time.time()))
@@ -281,7 +281,7 @@ def main():
                                 for _ in range(10):
                                     time.sleep(2)
                                     job_response = requests.get(
-                                        f"http://35.173.247.177:8000/api/v1/jobs/{job_id}",
+                                        f"http://localhost:8000/api/v1/jobs/{job_id}",
                                         timeout=10
                                     )
                                     job_response.raise_for_status()
