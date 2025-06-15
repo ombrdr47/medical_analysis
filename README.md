@@ -139,57 +139,60 @@ Models	spaCy, Transformers	Bundled
 ### 📍 SOAP Note  
 ![SOAP](screenshots/SOAP.png)
 
+## 🧠 Methodologies Used (Algorithms & Reasoning)
 
- Methodologies Used (Algorithms & Reasoning)
-1️⃣ Named Entity Recognition (NER)
-Hybrid Approach combining:
+### 1️⃣ Named Entity Recognition (NER)
 
-🔬 spaCy (en_core_web_sm) for general entities like PERSON, DATE, ORG.
+**Hybrid Approach combining:**
+- 🔬 **spaCy (`en_core_web_sm`)** for general entities like `PERSON`, `DATE`, `ORG`.
+- 🔬 **Regex-based patterns** for medical-specific entities (`SYMPTOM`, `TREATMENT`, `BODY_PART`, `TEMPORAL`).
+- 🔬 **Normalization layer** to map medical abbreviations (e.g. `PT` → `physiotherapy`).
 
-🔬 Regex-based patterns for medical-specific entities (SYMPTOM, TREATMENT, BODY_PART, TEMPORAL).
+**Reasoning:**  
+This hybrid approach works well for structured medical conversations where full clinical NER models may not be necessary, enabling fast prototyping without heavy compute requirements.
 
-🔬 Normalization layer: maps medical abbreviations (e.g. PT ➔ physiotherapy).
+---
 
-Reasoning: This hybrid approach works well for structured medical conversations where full clinical NER models may not be necessary, enabling fast prototyping without GPU needs.
+### 2️⃣ Medical Summarization
 
-2️⃣ Medical Summarization
-Extractive template-based summarization:
+**Extractive template-based summarization:**
+- Identifies key fields: `patient name`, `symptoms`, `diagnosis`, `treatments`, `prognosis`.
+- Uses pattern matching and entity grouping to generate structured summaries.
 
-Identifies key fields: patient name, symptoms, diagnosis, treatments, prognosis.
+**Reasoning:**  
+Rule-based summary ensures deterministic, predictable output suitable for academic assignments and simplifies evaluation.
 
-Uses simple pattern matching + entity groups to generate summaries.
+---
 
-Reasoning: Rule-based summary ensures deterministic output for academic assignment and makes evaluation simpler.
+### 3️⃣ Sentiment Analysis & Intent Detection
 
-3️⃣ Sentiment Analysis & Intent Detection
-Rule-based classifier for 5 emotions:
+**Approach:**
+- Rule-based classifier for 5 emotions: `anxious`, `hopeful`, `reassured`, `concerned`, `neutral`.
+- Intent detection via keyword/phrase pattern matching.
 
-anxious, hopeful, reassured, concerned, neutral.
+**Reasoning:**  
+Captures emotional context from patient responses, which is clinically important in analyzing doctor-patient conversations.
 
-Intent detection using keyword/phrase matching.
+---
 
-Reasoning: Focuses on detecting emotional state from patient responses during consultation, crucial for medical dialogue systems.
+### 4️⃣ SOAP Note Generation
 
-4️⃣ SOAP Note Generation
-Rule-based generation:
+**Rule-based templating:**
+- Maps extracted data into SOAP format (`Subjective`, `Objective`, `Assessment`, `Plan`).
+- Uses entity groups, diagnosis patterns, and clinical documentation templates.
 
-Maps extracted information into the standard SOAP format (Subjective, Objective, Assessment, Plan).
+**Reasoning:**  
+SOAP generation ensures interpretable, consistent clinical documentation closely resembling real-world EMR structures.
 
-Uses entity groups, diagnosis patterns, and clinical templates.
+---
 
-Reasoning: Template-based SOAP ensures high interpretability, consistency, and matches clinical documentation structure used in real-world EMRs.
+### 5️⃣ Quality Metrics Evaluation
 
-5️⃣ Quality Metrics Evaluation
-Calculates:
+**Metrics calculated:**
+- **Entity Coverage** — % of expected entities successfully extracted.
+- **Summary Completeness** — % of fields populated in medical summary.
+- **SOAP Completeness** — % of populated fields in SOAP note.
+- **Overall Confidence Score** — Weighted average confidence.
 
-Entity Coverage: % of expected entities extracted.
-
-Summary Completeness: % of fields filled in summary.
-
-SOAP Completeness: % of fields filled in SOAP.
-
-Overall Confidence: Weighted average score.
-
-Reasoning: Adds transparency to pipeline performance and helps in model evaluation for academic grading.
-
-
+**Reasoning:**  
+Provides transparency into pipeline performance, aiding academic evaluation and debugging.
